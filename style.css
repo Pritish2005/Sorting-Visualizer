@@ -15,3 +15,16 @@ body{
     background-color: black;
     margin: 2px ;
 }
+
+.navbar{
+    width: 100%;
+}
+
+.navbar-nav{
+    margin: 0 auto;
+}
+
+.toggle-button{
+    border: none;
+    background-color: #f8f9fa;
+}
