@@ -12,11 +12,11 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <ul class="navbar-nav">
             <div class="container-fluid">
-                <button class="toggle-button navbar-brand" onclick="toggleBubbleSort()">Bubble Sort</button>
-                <a class="navbar-brand" onclick="" href="#">Insertion sort</a>
-                <a class="navbar-brand" onclick="" href="#">Selection Sort</a>
-                <a class="navbar-brand" onclick="" href="#">Quick Sort</a>
-                <a class="navbar-brand" onclick="" href="#">Heap sort</a>
+                <button class="toggle-button navbar-brand" id="InsertionSort" onclick="toggleInsertionSort()">Insertion Sort</button>
+                <button class="toggle-button navbar-brand" id="SelectionSort" onclick="toggleSelectionSort()">Selection Sort</button>
+                <button class="toggle-button navbar-brand" id="QuickSort" onclick="toggleQuickSort()">Quick Sort</button>
+                <button class="toggle-button navbar-brand" id="HeapSort" onclick="toggleHeapSort()">Heap sort</button>
+                <button class="toggle-button navbar-brand" id="BubbleSort" onclick="toggleBubbleSort()">Bubble Sort</button>
               </div>
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,8 +35,18 @@
       <!-- sorting vis -->
     <h1>Sorting Visualizer</h1>
     <div id="container"></div>
-    <div>
-        <button id="init" >Randomize Array</button>
+    <div class="sorting-Paramenter">
+        <div><button id="init" >Randomize Array</button></div>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" id="array-size-display" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Size
+          </button>
+          <ul class="dropdown-menu">
+            <li><button class="array-size dropdown-item" value="20">20</button></li>
+            <li><button class="array-size dropdown-item" value="40">40</button></li>
+            <li><button class="array-size dropdown-item" value="80">80</button></li>
+          </ul>
+        </div>
     </div>
     <script src="./script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

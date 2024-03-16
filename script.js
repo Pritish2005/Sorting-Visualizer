@@ -1,7 +1,15 @@
 // creating array of size n and inserting random values
-const n=20;
+var n=20;
+// document.querySelectorAll('.array-size').forEach(button => {
+//     button.addEventListener('click', () => {
+//       const selectedValue = button.value;
+//       n = parseInt(selectedValue);
+//       console.log("Selecting values",n);
+//       showbars()
+//     });
+// });
+
 const array=[];
-const toggler=[];
 init();//automatically calls on refresh
 
 const initButton=document.getElementById("init");
@@ -18,11 +26,91 @@ function init(){
     showbars();
 }
 
+// utility functions
+
+function defaultColor(){
+    document.getElementById("BubbleSort").style.backgroundColor="#f8f9fa";
+    document.getElementById("InsertionSort").style.backgroundColor="#f8f9fa";
+    document.getElementById("QuickSort").style.backgroundColor="#f8f9fa";
+    document.getElementById("SelectionSort").style.backgroundColor="#f8f9fa";
+    document.getElementById("HeapSort").style.backgroundColor="#f8f9fa";
+}
+
+function disableButtons(){
+    document.getElementById("InsertionSort").disabled=true;
+    document.getElementById("BubbleSort").disabled=true;
+    document.getElementById("QuickSort").disabled=true;
+    document.getElementById("SelectionSort").disabled=true;
+    document.getElementById("HeapSort").disabled=true;
+}
+
+function enablebuttons(){
+    document.getElementById("InsertionSort").disabled=false;
+    document.getElementById("BubbleSort").disabled=false;
+    document.getElementById("QuickSort").disabled=false;
+    document.getElementById("SelectionSort").disabled=false;
+    document.getElementById("HeapSort").disabled=false;
+}
+
+// sorting Button
+
+function toggleInsertionSort(){
+    disableButtons();
+    async function play(){
+        defaultColor();
+        document.getElementById("InsertionSort").style.backgroundColor="#c4c6c4";
+        const copy=[...array]
+        const moves=insertionSort(copy,n) ;
+        await animate(moves);
+        enablebuttons();
+    }
+    play();
+}
 function toggleBubbleSort(){
-    function play(){
+    disableButtons();
+    async function play(){
+        defaultColor();
+        document.getElementById("BubbleSort").style.backgroundColor="#c4c6c4";
         const copy=[...array]
         const moves=bubbleSort(copy,n) ;
-        animate(moves);
+        await animate(moves);
+        enablebuttons();
+    }
+    play();
+}
+function toggleSelectionSort(){
+    disableButtons();
+    async function play(){
+        defaultColor();
+        document.getElementById("SelectionSort").style.backgroundColor="#c4c6c4";
+        const copy=[...array]
+        const moves=selectionSort(copy) ;
+        await animate(moves);
+        enablebuttons();
+    }
+    play();
+}
+function toggleQuickSort(){
+    disableButtons();
+    async function play(){
+        defaultColor();
+        document.getElementById("QuickSort").style.backgroundColor="#c4c6c4";
+        const copy=[...array]
+        const moves=quickSort(copy) ;
+        await animate(moves);
+        enablebuttons();
+    }
+    play();
+}
+function toggleHeapSort(){
+    disableButtons();
+    async function play(){
+        defaultColor();
+        document.getElementById("HeapSort").style.backgroundColor="#c4c6c4";
+        const copy=[...array]
+        const moves=heapSort(copy) ;
+        await animate(moves);
+        enablebuttons();
     }
     play();
 }
@@ -31,7 +119,7 @@ function toggleBubbleSort(){
 // console.log(array);
 
 
-function animate(moves) {
+async function animate(moves) {
     if(moves.length==0){
         showbars();
         return;
@@ -42,10 +130,12 @@ function animate(moves) {
         [array[i],array[j]]=[array[j],array[i]];
     }
     showbars(move);
-    setTimeout(function(){
-        animate(moves);
-    },50);
+    await new Promise(resolve => setTimeout(() => {
+        resolve();
+    }, 50));
+    await animate(moves);
 }
+
 
 // Visualizing array 
 function showbars(move){
@@ -110,8 +200,8 @@ function bubbleSort(arr, n)
         if (swapped == false)
         break;
     }
-
     return moves;
+
 }
 
 function insertionSort(arr, n) {

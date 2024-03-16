@@ -28,3 +28,10 @@ body{
     border: none;
     background-color: #f8f9fa;
 }
+
+.sorting-Paramenter{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
