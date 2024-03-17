@@ -1,13 +1,21 @@
-// creating array of size n and inserting random values
 var n=20;
-// document.querySelectorAll('.array-size').forEach(button => {
-//     button.addEventListener('click', () => {
-//       const selectedValue = button.value;
-//       n = parseInt(selectedValue);
-//       console.log("Selecting values",n);
-//       showbars()
-//     });
-// });
+
+// Customizing size using drop down menu
+document.querySelectorAll('.array-size').forEach(button => {
+    button.addEventListener('click', () => {
+      const selectedValue = button.value;
+      n = parseInt(selectedValue);
+      document.getElementById("array-size-display").innerText=n;
+      console.log("Selecting values",n);
+      init();
+      showbars();
+
+    });
+});
+
+
+// creating array of size n and inserting random values
+
 
 const array=[];
 init();//automatically calls on refresh
@@ -25,6 +33,7 @@ function init(){
     }
     showbars();
 }
+
 
 // utility functions
 
@@ -116,26 +125,8 @@ function toggleHeapSort(){
 }
 
 
+
 // console.log(array);
-
-
-async function animate(moves) {
-    if(moves.length==0){
-        showbars();
-        return;
-    }
-    const move=moves.shift();
-    const [i,j]=move.indices;
-    if(move.type=="swap"){
-        [array[i],array[j]]=[array[j],array[i]];
-    }
-    showbars(move);
-    await new Promise(resolve => setTimeout(() => {
-        resolve();
-    }, 50));
-    await animate(moves);
-}
-
 
 // Visualizing array 
 function showbars(move){
@@ -153,6 +144,49 @@ function showbars(move){
     }
 }
 
+var speed=50;
+// Customizing size using drop down menu
+document.querySelectorAll('.sort-speed').forEach(button => {
+    button.addEventListener('click', () => {
+      const selectedValue = button.value;
+      speed = parseInt(selectedValue);
+
+      const speedDisplayButton = document.getElementById("Speed-display");
+      switch (selectedValue) {
+          case "200":
+              speedDisplayButton.innerText = "Slow";
+              break;
+          case "50":
+              speedDisplayButton.innerText = "Fast";
+              break;
+          case "10":
+              speedDisplayButton.innerText = "Very Fast";
+              break;
+          default:
+              break;
+      }
+    
+    });
+});
+
+async function animate(moves) {
+    if(moves.length==0){
+        showbars();
+        return;
+    }
+    const move=moves.shift();
+    const [i,j]=move.indices;
+    if(move.type=="swap"){
+        [array[i],array[j]]=[array[j],array[i]];
+    }
+    showbars(move);
+    await new Promise(resolve => setTimeout(() => {
+        resolve();
+    }, `${speed}`));
+    await animate(moves);
+}
+
+
 // function play(){
 //     const copy=[...array]
 //     // const moves=bubbleSort(copy,n) ;
@@ -162,8 +196,6 @@ function showbars(move){
 //     // const moves=selectionSort(copy) ;
 //     animate(moves);
 // }
-
-
 
 
 
